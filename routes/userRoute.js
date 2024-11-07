@@ -6,12 +6,17 @@ const { checkPermission } = require('../middlewares/permissionMiddleware');
 
 const router = express.Router();
 
-router.get('/:id', verifyToken, getUserById);
+router.get('/:id', verifyToken, checkPermission('admin'), getUserById);
 router.get('/slugId/:slugId', getUserBySlugId);
 router.get('/get/list', verifyToken, getAllUsers);
 router.get('/get/email', verifyToken, getUserByEmail);
 router.put('/', verifyToken, validateUpdateUser, updateUserProfile);
 router.delete('/:id', verifyToken, deleteUserProfile);
+
+
+//user permission - getUserById
+
+
 
 //check role and permission
 router.get('/users/view_orders', verifyToken, checkPermission('view_orders'), userAccess);

@@ -65,7 +65,7 @@ const deleteBill = async (req, res) => {
         if (!deletedBill) {
             return responseHandler(res, STATUS_CODE.NOT_FOUND, MESSAGE.BILL_NOT_FOUND);
         }
-        return responseHandler(res, STATUS_CODE.OK, MESSAGE.BILL_DELETED, deletedBill);
+        return responseHandler(res, STATUS_CODE.OK, MESSAGE.BILL_DELETED, null);
     } catch (error) {
         console.error("Error deleting bill:", error);
         return responseHandler(res, STATUS_CODE.INTERNAL_SERVER_ERROR, MESSAGE.BILL_DELETION_FAILED, error.message);

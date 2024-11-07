@@ -72,7 +72,7 @@ const assignRolePermission = async (req, res) => {
             return responseHandler(res, STATUS_CODE.NOT_FOUND, MESSAGE.PERMISSION_NOT_FOUND,null);
         }
 
-        const existingRolePermission = await RolePermission.findOne({ role, permission });
+        const existingRolePermission = await RolePermission.findOne({ permission });
         if (existingRolePermission) {
             return responseHandler(res, STATUS_CODE.BAD_REQUEST, MESSAGE.PERMISSION_EXISTS,null);
         }

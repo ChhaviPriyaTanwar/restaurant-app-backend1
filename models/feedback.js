@@ -30,12 +30,10 @@ const feedbackSchema = new mongoose.Schema({
         default: 0,
     },
     createdAt: {
-        type: Date,
-        default: Date.now,
+        type: Number,
     },
     updatedAt: {
-        type: Date,
-        default: Date.now,
+        type: Number,
     },
 });
 

@@ -9,15 +9,15 @@ const billSchema = new mongoose.Schema({
         required: true,
     },
     userId: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: String,
         ref: 'User',
         required: true,
     },
-    amount: { // Original price before discount
+    amount: { 
         type: Number,
         required: true,
     },
-    totalPrice: { // Final price after discount
+    totalPrice: {
         type: Number,
         required: true,
     },
@@ -27,15 +27,19 @@ const billSchema = new mongoose.Schema({
     },
     discount: {
         type: Boolean,
-        default: false, // Default to false, no discount
+        default: false, 
     },
     discountAmount: {
         type: Number,
-        default: 0, // Amount of discount if applicable
+        default: 0, 
     },
     createdAt: {
         type: Date,
         default: Date.now,
+    },
+    updatedAt: {
+        type: Date,
+        default: 0,
     },
 });
 

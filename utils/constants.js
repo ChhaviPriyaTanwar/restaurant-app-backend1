@@ -68,6 +68,7 @@ const MESSAGE = {
     INSUFFICIENT_PERMISSIONS: 'Access Denied: Insufficient Permissions',
     SERVER_ERROR: 'Server Error',
     NO_ROLE_FOUND: 'No role found for the user',
+    INVALID_HTTP_METHOD: 'Invalid permission method',
     
     //Reset Password 
     PASSWORD_RESET_SUCCESS: 'Password reset successful',
@@ -170,12 +171,15 @@ const MESSAGE = {
     FAVORITE_ADD_FAILED: 'Failed to add favorite.',
     FAVORITES_RETRIEVED: 'Favorites retrieved successfully.',
     FAVORITES_RETRIEVE_FAILED: 'Failed to retrieve favorites.',
+    FAVORITE_UPDATED: 'Favorite updated successfully.',
+    FAVORITE_UPDATED_FAILED: 'Failed to updated favorite.',
     FAVORITE_DELETED: 'Favorite deleted successfully.',
     FAVORITE_DELETION_FAILED: 'Failed to delete favorite.',
     FAVORITE_NOT_FOUND: 'Favorite not found.',
     FAVORITES_CLEARED: 'All favorites cleared successfully.',
     FAVORITES_CLEAR_FAILED: 'Failed to clear favorites.',
     FAVORITE_ALREADY_EXISTS: 'This item is already in your favorites.',
+    INVALID_IDS: 'Invalid id.',
 
     //Staff
     STAFF_CREATED: "Staff member created successfully.",

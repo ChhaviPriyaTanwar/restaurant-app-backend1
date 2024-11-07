@@ -6,7 +6,7 @@ const Order = require('../models/order');
 const createBill = async ({ orderId, userId, payment_mode, discount }) => {
     try {
         const order = await Order.findById(orderId); // Get the order details
-        if (!order) throw new Error(MESSAGE.ORDER_NOT_FOUND);
+        if (!order) throw new Error("Order is not found");
 
         const amount = parseFloat(order.totalPrice.toFixed(2)); // Original price
         const discountAmount = discount ? parseFloat((0.1 * amount).toFixed(2)) : 0; // 10% discount if true
@@ -32,17 +32,22 @@ const createBill = async ({ orderId, userId, payment_mode, discount }) => {
 
 // Retrieve all bills
 const getAllBills = async () => {
-    return await Bill.find().populate('orderId userId');
+    return await Bill.find().populate('orderId');
 };
 
 // Retrieve a specific bill by ID
 const getBillById = async (billId) => {
-    return await Bill.findById(billId).populate('orderId userId');
+    return await Bill.findById(billId).populate('orderId');
 };
+
+// Retrieve a specific bill by ID
+// const getBillById = async (billId) => {
+//     return await Bill.findById(billId).populate('orderId userId');
+// };
 
 // Update a bill
 const updateBill = async (billId, updateData) => {
-    return await Bill.findByIdAndUpdate(billId, updateData, { new: true }).populate('orderId userId');
+    return await Bill.findByIdAndUpdate(billId, updateData, { new: true }).populate('orderId');
 };
 
 // Delete a bill

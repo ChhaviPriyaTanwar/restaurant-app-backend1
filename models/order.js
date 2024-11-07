@@ -4,14 +4,16 @@ const mongoose = require('mongoose');
 
 const orderSchema = new mongoose.Schema({
     userId: {
-        type: mongoose.Schema.Types.ObjectId,
+        // type: mongoose.Schema.Types.ObjectId,
+        type: String,
         ref: 'User',
         required: true
     },
     items: [
         {
             menuItemId: {
-                type: mongoose.Schema.Types.ObjectId,
+                // type: mongoose.Schema.Types.ObjectId,
+                type: String,
                 ref: 'Menu',
                 required: true
             },
@@ -35,7 +37,12 @@ const orderSchema = new mongoose.Schema({
     createdAt: {
         type: Date,
         default: Date.now
-    }
+    },
+    updatedAt: {
+        type: Date,
+        default: null
+    },
+    
 });
 
 const Order = mongoose.model('Order', orderSchema);

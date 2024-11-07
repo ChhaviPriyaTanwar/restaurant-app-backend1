@@ -145,15 +145,13 @@ const deleteUserProfile = async (req, res) => {
             return responseHandler(res, STATUS_CODE.BAD_REQUEST, MESSAGE.ID_REQUIRED);
         }
 
-        // Check if user exists
-        const user = await userService.getUserById(id);
+        // Check if user exists      
+        const user = await userService.deleteUserProfile(id);
+        logger.info(`User profile deleted: ${id}`);
         if (!user) {
             logger.warn(`Delete failed: User not found with ID: ${id}`);
             return responseHandler(res, STATUS_CODE.NOT_FOUND, MESSAGE.USER_NOT_FOUND, null);
         }
-
-        await userService.deleteUserProfile(id);
-        logger.info(`User profile deleted: ${id}`);
         return responseHandler(res, STATUS_CODE.OK, MESSAGE.USER_DELETED_SUCCESS, null);
     } catch (error) {
         logger.error(`Error deleting user profile: ${error.message}`);

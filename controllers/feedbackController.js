@@ -4,9 +4,11 @@ const { STATUS_CODE, MESSAGE } = require('../utils/constants');
 
 // Add a new feedback
 const addFeedback = async (req, res) => {
+    const { userId, orderId, comment, rating } = req.body; 
     try {
-        const { userId, orderId, comment, rating } = req.body; // Extract parameters from request body
-        const feedback = await feedbackService.createFeedback({ userId, orderId, comment, rating });
+        const feedback = await feedbackService.createFeedback({ userId, orderId, comment, rating,
+            createdAt: Math.floor(Date.now() / 1000),
+            updatedAt: 0, });
         return responseHandler(res, STATUS_CODE.CREATED, MESSAGE.FEEDBACK_CREATED, feedback);
     } catch (error) {
         console.error("Error creating feedback:", error);
@@ -27,8 +29,8 @@ const getAllFeedback = async (req, res) => {
 
 // Get feedback by ID
 const getFeedbackById = async (req, res) => {
+    const { feedbackId } = req.params;
     try {
-        const { feedbackId } = req.params;
         const feedback = await feedbackService.getFeedbackById(feedbackId);
         if (!feedback) {
             return responseHandler(res, STATUS_CODE.NOT_FOUND, MESSAGE.FEEDBACK_NOT_FOUND);
@@ -42,8 +44,8 @@ const getFeedbackById = async (req, res) => {
 
 // Update feedback
 const updateFeedback = async (req, res) => {
+    const { feedbackId } = req.params;
     try {
-        const { feedbackId } = req.params;
         const updatedFeedback = await feedbackService.updateFeedback(feedbackId, req.body);
         if (!updatedFeedback) {
             return responseHandler(res, STATUS_CODE.NOT_FOUND, MESSAGE.FEEDBACK_NOT_FOUND);
@@ -57,8 +59,8 @@ const updateFeedback = async (req, res) => {
 
 // Delete feedback
 const deleteFeedback = async (req, res) => {
+    const { feedbackId } = req.params;
     try {
-        const { feedbackId } = req.params;
         const deletedFeedback = await feedbackService.deleteFeedback(feedbackId);
         if (!deletedFeedback) {
             return responseHandler(res, STATUS_CODE.NOT_FOUND, MESSAGE.FEEDBACK_NOT_FOUND);
